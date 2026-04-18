@@ -1,0 +1,55 @@
+# Build artifacts
+[Bb]in/
+[Oo]bj/
+out/
+artifacts/
+TestResults/
+
+# Frontend build artifacts
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/coverage/
+frontend/.sass-cache/
+
+# Coverage outputs
+coverage/
+*.lcov
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# IDE folders
+.vs/
+.idea/
+
+# VS Code (keep shared workspace config if needed)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# NuGet
+*.nupkg
+*.snupkg
+
+# Logs
+*.log
+
+# Local environment files
+.env
+.env.*
+*.env
+
+# Local database files
+*.mdf
+*.ldf
+
+# OS generated files
+.DS_Store
+Thumbs.db
