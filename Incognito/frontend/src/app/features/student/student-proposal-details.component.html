@@ -1,0 +1,75 @@
+<app-page-header title="Proposal Details" subtitle="Review the full proposal and reveal status.">
+  <a actions mat-stroked-button class="btn-secondary" routerLink="/student/proposals">Back to proposals</a>
+  <a *ngIf="proposal() && canEdit(proposal()!)" actions mat-flat-button class="btn-primary" [routerLink]="['/student/proposals', proposal()!.id, 'edit']">Edit Proposal</a>
+</app-page-header>
+
+<ng-container *ngIf="proposal() as item; else noData">
+  <article class="ui-card detail-hero">
+    <div class="detail-hero__header">
+      <div>
+        <p class="ui-eyebrow">Proposal Submission</p>
+        <h2>{{ item.title }}</h2>
+      </div>
+      <app-status-badge [status]="item.status"></app-status-badge>
+    </div>
+
+    <p class="detail-hero__abstract">{{ item.abstract }}</p>
+
+    <div class="detail-hero__meta">
+      <article>
+        <p class="label">Research area</p>
+        <p>{{ item.researchAreaName }}</p>
+      </article>
+      <article>
+        <p class="label">Technical stack</p>
+        <p>{{ item.technicalStack || 'Not specified' }}</p>
+      </article>
+      <article>
+        <p class="label">Proposal document</p>
+        <p *ngIf="item.proposalDocumentUrl; else noProposalDocument">
+          <a class="document-link" [href]="proposalDocumentViewUrl(item.proposalDocumentUrl)" target="_blank" rel="noopener noreferrer">Open PDF preview</a>
+        </p>
+        <ng-template #noProposalDocument>
+          <p>Not attached</p>
+        </ng-template>
+      </article>
+      <article>
+        <p class="label">Project mode</p>
+        <p>{{ item.isGroupProject ? 'Group project' : 'Individual project' }}</p>
+      </article>
+      <article *ngIf="item.isGroupProject">
+        <p class="label">Group</p>
+        <p>{{ item.projectGroupName || 'Unnamed group' }}</p>
+      </article>
+      <article *ngIf="item.isGroupProject">
+        <p class="label">Group members</p>
+        <p>{{ (item.groupMembers && item.groupMembers.length > 0) ? item.groupMembers.join(', ') : 'Not available' }}</p>
+      </article>
+      <article>
+        <p class="label">Submitted</p>
+        <p>{{ item.createdAt | date:'mediumDate' }}</p>
+      </article>
+    </div>
+  </article>
+
+  <section class="reveal-section">
+    <app-reveal-card *ngIf="item.matchedSupervisor" [details]="item.matchedSupervisor"></app-reveal-card>
+
+    <article *ngIf="!item.matchedSupervisor" class="ui-card hidden-reveal">
+      <div class="hidden-reveal__icon">
+        <mat-icon>lock</mat-icon>
+      </div>
+      <div>
+        <p class="ui-eyebrow">Reveal Pending</p>
+        <h3>Supervisor identity is intentionally hidden</h3>
+        <p>
+          Identity will appear only after a supervisor confirmation, preserving fairness in the incognito matching process.
+        </p>
+      </div>
+    </article>
+  </section>
+</ng-container>
+
+<ng-template #noData>
+  <app-empty-state icon="error" title="Proposal not available" message="The requested proposal could not be loaded."></app-empty-state>
+</ng-template>

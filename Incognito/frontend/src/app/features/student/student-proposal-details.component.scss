@@ -1,0 +1,115 @@
+.detail-hero {
+  padding: var(--space-5);
+  margin-bottom: var(--space-4);
+  display: grid;
+  gap: var(--space-4);
+}
+
+.detail-hero__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+
+  h2 {
+    margin-top: var(--space-2);
+    line-height: 1.35;
+  }
+}
+
+.detail-hero__abstract {
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+
+.detail-hero__meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+
+  article {
+    border: 1px solid var(--surface-border);
+    border-radius: 12px;
+    background: var(--color-bg-surface);
+    padding: var(--space-3);
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  p:last-child {
+    font-weight: 600;
+  }
+}
+
+.label {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.document-link {
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.document-link:hover {
+  text-decoration: underline;
+}
+
+.reveal-section {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.hidden-reveal {
+  padding: var(--space-5);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  border-style: dashed;
+  background: var(--color-bg-surface);
+
+  h3 {
+    margin-top: var(--space-2);
+  }
+
+  p:last-child {
+    margin-top: var(--space-2);
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+}
+
+.hidden-reveal__icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  color: var(--accent-blue);
+  background: color-mix(in srgb, var(--accent-blue) 14%, #ffffff);
+  border: 1px solid color-mix(in srgb, var(--accent-blue) 24%, #ffffff);
+}
+
+@media (max-width: 900px) {
+  .detail-hero__meta {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .detail-hero,
+  .hidden-reveal {
+    padding: var(--space-4);
+  }
+
+  .detail-hero__header,
+  .hidden-reveal {
+    flex-direction: column;
+  }
+}

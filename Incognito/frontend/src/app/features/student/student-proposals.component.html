@@ -1,0 +1,31 @@
+<app-page-header title="My Proposals" subtitle="Track status, edit pending submissions, and view match reveal details.">
+  <a actions mat-flat-button class="btn-primary" routerLink="/student/create">New Proposal</a>
+</app-page-header>
+
+<app-loading-skeleton *ngIf="loading()" [rows]="4"></app-loading-skeleton>
+
+<section *ngIf="!loading() && proposals().length > 0" class="proposal-grid">
+  @for (proposal of proposals(); track proposal.id) {
+    <app-proposal-card
+      [title]="proposal.title"
+      [abstract]="proposal.abstract"
+      [researchArea]="proposal.researchAreaName"
+      [techStack]="proposal.technicalStack ?? ''"
+      [meta]="(proposal.isGroupProject ? ('Group: ' + (proposal.projectGroupName || 'Unnamed group') + ' • ') : '') + 'Submitted ' + (proposal.createdAt | date: 'mediumDate')"
+      [status]="proposal.status">
+      <div actions>
+        <a mat-stroked-button class="btn-secondary" [routerLink]="['/student/proposals', proposal.id]">Details</a>
+        <a *ngIf="canEdit(proposal)" mat-stroked-button class="btn-secondary" [routerLink]="['/student/proposals', proposal.id, 'edit']">Edit</a>
+        <button *ngIf="canWithdraw(proposal)" mat-stroked-button class="btn-danger" (click)="withdraw(proposal.id)">Withdraw</button>
+      </div>
+    </app-proposal-card>
+  }
+</section>
+
+<app-empty-state
+  *ngIf="!loading() && proposals().length === 0"
+  icon="assignment"
+  title="No proposals yet"
+  message="Create your first proposal to start the incognito matching workflow.">
+  <a mat-flat-button class="btn-primary" routerLink="/student/create">Create Proposal</a>
+</app-empty-state>
