@@ -1,0 +1,35 @@
+mat-form-field {
+  width: 100%;
+}
+
+.user-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+mat-card {
+  border-radius: 14px;
+  padding: var(--space-4);
+  display: grid;
+  gap: var(--space-2);
+}
+
+h3 {
+  margin-top: 0;
+}
+
+p {
+  color: var(--text-muted);
+  word-break: break-word;
+}
+
+small {
+  color: var(--text-soft);
+}
+
+@media (max-width: 960px) {
+  .user-grid {
+    grid-template-columns: 1fr;
+  }
+}

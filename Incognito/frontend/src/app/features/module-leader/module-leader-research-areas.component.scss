@@ -1,0 +1,45 @@
+mat-card {
+  border-radius: 14px;
+}
+
+.create-card {
+  margin-bottom: var(--space-4);
+  padding: var(--space-5);
+}
+
+.form-grid {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.form-grid.compact {
+  gap: var(--space-2);
+}
+
+.area-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.area-grid mat-card {
+  padding: var(--space-4);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.area-grid p {
+  color: var(--text-muted);
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: flex-end;
+}
+
+@media (max-width: 960px) {
+  .area-grid {
+    grid-template-columns: 1fr;
+  }
+}

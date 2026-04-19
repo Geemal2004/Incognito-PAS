@@ -1,0 +1,63 @@
+<app-page-header title="Research Areas" subtitle="Create and maintain taxonomy used by matching and expertise.">
+  <a actions mat-stroked-button routerLink="/module-leader">Dashboard</a>
+</app-page-header>
+
+<mat-card class="create-card">
+  <h3>Add research area</h3>
+  <form [formGroup]="createForm" (ngSubmit)="create()" class="form-grid">
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea matInput rows="3" formControlName="description"></textarea>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" type="submit">Create area</button>
+  </form>
+</mat-card>
+
+<app-loading-skeleton *ngIf="loading()" [rows]="4"></app-loading-skeleton>
+
+<section *ngIf="!loading() && areas().length > 0" class="area-grid">
+  @for (area of areas(); track area.id) {
+    <mat-card>
+      <ng-container *ngIf="editingId() === area.id; else readMode">
+        <form [formGroup]="editForm" class="form-grid compact">
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput rows="3" formControlName="description"></textarea>
+          </mat-form-field>
+
+          <div class="actions">
+            <button mat-flat-button color="primary" type="button" (click)="saveEdit()">Save</button>
+            <button mat-button type="button" (click)="cancelEdit()">Cancel</button>
+          </div>
+        </form>
+      </ng-container>
+
+      <ng-template #readMode>
+        <h3>{{ area.name }}</h3>
+        <p>{{ area.description || 'No description provided.' }}</p>
+        <div class="actions">
+          <button mat-button type="button" (click)="startEdit(area)">Edit</button>
+          <button mat-button color="warn" type="button" (click)="deactivate(area.id)">Deactivate</button>
+        </div>
+      </ng-template>
+    </mat-card>
+  }
+</section>
+
+<app-empty-state
+  *ngIf="!loading() && areas().length === 0"
+  icon="category"
+  title="No research areas"
+  message="Create at least one area so students and supervisors can classify projects and expertise.">
+</app-empty-state>

@@ -1,0 +1,40 @@
+<app-page-header title="Users" subtitle="Review student and supervisor accounts involved in allocation.">
+  <a actions mat-stroked-button routerLink="/module-leader">Dashboard</a>
+</app-page-header>
+
+<app-filter-bar>
+  <app-search-box
+    label="Search users"
+    placeholder="Name or email"
+    [value]="search()"
+    (valueChange)="updateSearch($event)">
+  </app-search-box>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Role</mat-label>
+    <mat-select [ngModel]="role()" (ngModelChange)="updateRole($event)">
+      <mat-option value="">All</mat-option>
+      <mat-option value="Student">Student</mat-option>
+      <mat-option value="Supervisor">Supervisor</mat-option>
+    </mat-select>
+  </mat-form-field>
+</app-filter-bar>
+
+<app-loading-skeleton *ngIf="loading()" [rows]="4"></app-loading-skeleton>
+
+<section *ngIf="!loading() && filteredUsers().length > 0" class="user-grid">
+  @for (user of filteredUsers(); track user.id) {
+    <mat-card>
+      <h3>{{ user.fullName }}</h3>
+      <p>{{ user.email }}</p>
+      <small>{{ user.role }} • {{ user.isActive ? 'Active' : 'Inactive' }}</small>
+    </mat-card>
+  }
+</section>
+
+<app-empty-state
+  *ngIf="!loading() && filteredUsers().length === 0"
+  icon="group_off"
+  title="No users found"
+  message="Try a different role filter or search term.">
+</app-empty-state>
