@@ -1,0 +1,64 @@
+<mat-sidenav-container class="shell-container">
+  <mat-sidenav #drawer [mode]="isCompact() ? 'over' : 'side'" [opened]="!isCompact()" class="shell-sidenav">
+    <div class="shell-sidenav__content">
+      <button class="brand" type="button" (click)="goHome(drawer)">
+        <span class="brand__title">Incognito PAS</span>
+        <span class="brand__subtitle">Fair and anonymous supervisor allocation</span>
+      </button>
+
+      <nav class="nav-links" aria-label="Workspace navigation">
+        @for (item of navLinks(); track item.link) {
+          <a
+            mat-button
+            class="nav-link"
+            [routerLink]="item.link"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: item.exact ?? false }"
+            (click)="closeOnMobile(drawer)">
+            <mat-icon>{{ item.icon }}</mat-icon>
+            <span class="nav-link__label">{{ item.label }}</span>
+          </a>
+        }
+      </nav>
+
+      <div class="sidenav-footer">
+        <p class="ui-eyebrow">Incognito Matching Guarantee</p>
+        <p>Student identity remains hidden until a match is explicitly confirmed in the workflow.</p>
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="shell-toolbar">
+      <button mat-icon-button (click)="drawer.toggle()" class="mobile-toggle" aria-label="Toggle sidebar">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <div class="toolbar-title">
+        <h2>{{ workspaceTitle() }}</h2>
+        <p>Secure project allocation workspace</p>
+      </div>
+
+      <span class="toolbar-spacer"></span>
+
+      <div class="toolbar-user" *ngIf="user() as currentUser">
+        <div class="toolbar-user__avatar" [class.toolbar-user__avatar--image]="!!currentUser.profileImageUrl">
+          <img *ngIf="currentUser.profileImageUrl as imageUrl; else toolbarInitials" [src]="imageUrl" [alt]="currentUser.fullName + ' profile picture'" />
+          <ng-template #toolbarInitials>{{ userInitials(currentUser.fullName) }}</ng-template>
+        </div>
+        <div class="toolbar-user__details">
+          <span class="toolbar-user__name">{{ currentUser.fullName }}</span>
+          <span class="toolbar-user__role">{{ currentUser.role }}</span>
+        </div>
+      </div>
+
+      <button mat-stroked-button class="btn-secondary" (click)="logout()">Logout</button>
+    </mat-toolbar>
+
+    <main class="shell-main">
+      <div class="shell-page-container">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
