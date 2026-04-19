@@ -1,0 +1,48 @@
+<div class="auth-shell">
+  <section class="auth-hero">
+    <p class="auth-hero__eyebrow">Academic Allocation Platform</p>
+    <h2>Fair supervision starts with incognito matching.</h2>
+    <p>
+      Incognito PAS protects student anonymity until confirmation, giving your department a transparent,
+      equitable project assignment workflow.
+    </p>
+
+    <ul>
+      <li>Anonymous proposal review before confirmation</li>
+      <li>Role-based secure workspaces for each actor</li>
+      <li>Audit-friendly allocation lifecycle</li>
+    </ul>
+  </section>
+
+  <mat-card class="auth-card ui-card">
+    <p class="eyebrow" (click)="toLanding()">Incognito PAS</p>
+    <h1>Welcome back</h1>
+    <p class="subtitle">Sign in to continue your secure project allocation workflow.</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+        @if (form.controls.email.touched && form.controls.email.invalid) {
+          <mat-error>Enter a valid email.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+        @if (form.controls.password.touched && form.controls.password.invalid) {
+          <mat-error>Password must be at least 8 characters.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-checkbox formControlName="rememberMe">Remember me on this device</mat-checkbox>
+
+      <button mat-flat-button class="btn-primary" type="submit" [disabled]="submitting()">
+        {{ submitting() ? 'Signing in...' : 'Sign in to workspace' }}
+      </button>
+    </form>
+
+    <p class="muted">No account yet? <a routerLink="/auth/register">Create an account</a></p>
+  </mat-card>
+</div>

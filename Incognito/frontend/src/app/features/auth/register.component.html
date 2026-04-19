@@ -1,0 +1,52 @@
+<div class="auth-shell">
+  <section class="auth-hero">
+    <p class="auth-hero__eyebrow">Secure Onboarding</p>
+    <h2>Join Incognito PAS in under a minute.</h2>
+    <p>Create your account to start role-based participation in fair project supervision allocation.</p>
+
+    <ul>
+      <li>Students submit anonymized proposals</li>
+      <li>Supervisors review without identity bias</li>
+      <li>Identity is revealed only after confirmed matching</li>
+    </ul>
+  </section>
+
+  <mat-card class="auth-card ui-card">
+    <p class="eyebrow">Incognito PAS</p>
+    <h1>Create account</h1>
+    <p class="subtitle">Register as a student or supervisor to access your workspace.</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form">
+      <mat-form-field appearance="outline">
+        <mat-label>Full name</mat-label>
+        <input matInput formControlName="fullName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Confirm password</mat-label>
+        <input matInput formControlName="confirmPassword" type="password" />
+      </mat-form-field>
+
+      <mat-radio-group formControlName="role">
+        <mat-radio-button value="Student">Student</mat-radio-button>
+        <mat-radio-button value="Supervisor">Supervisor</mat-radio-button>
+      </mat-radio-group>
+
+      <button mat-flat-button class="btn-primary" type="submit" [disabled]="submitting()">
+        {{ submitting() ? 'Creating...' : 'Create account' }}
+      </button>
+    </form>
+
+    <p class="muted">Already have an account? <a routerLink="/auth/login">Sign in</a></p>
+  </mat-card>
+</div>

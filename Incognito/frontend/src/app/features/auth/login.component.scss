@@ -1,0 +1,123 @@
+.auth-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(320px, 1.05fr) minmax(340px, 0.95fr);
+  gap: clamp(1rem, 4vw, 3rem);
+  align-items: stretch;
+  padding: clamp(1rem, 3vw, 2.5rem);
+}
+
+.auth-hero {
+  border-radius: 22px;
+  padding: clamp(1.5rem, 3vw, 2.6rem);
+  background:
+    radial-gradient(circle at 90% -10%, rgba(255, 255, 255, 0.26), transparent 42%),
+    linear-gradient(150deg, #0f4e9f 0%, #1b66c9 52%, #39b54a 100%);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-md);
+  align-content: center;
+  gap: var(--space-4);
+
+  h2 {
+    font-family: var(--font-display);
+    color: inherit;
+    font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+    line-height: 1.25;
+  }
+
+  p {
+    color: rgba(242, 246, 255, 0.92);
+    max-width: 48ch;
+  }
+
+  ul {
+    margin: var(--space-1) 0 0;
+    padding-left: 1rem;
+    display: grid;
+    gap: var(--space-2);
+  }
+}
+
+.auth-hero__eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(240, 246, 255, 0.82);
+}
+
+.auth-card {
+  width: min(520px, 96vw);
+  align-self: center;
+  justify-self: end;
+  border-radius: 20px;
+  padding: clamp(1.25rem, 2.4vw, 2rem);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-soft);
+  font-size: 0.77rem;
+  font-weight: 700;
+  margin: 0;
+  cursor: pointer;
+}
+
+.subtitle {
+  color: var(--text-muted);
+}
+
+.auth-form {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+mat-checkbox {
+  color: var(--text-muted);
+}
+
+button {
+  margin-top: var(--space-1);
+}
+
+.muted {
+  margin-top: var(--space-3);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 1024px) {
+  .auth-shell {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .auth-hero {
+    min-height: 220px;
+  }
+
+  .auth-card {
+    justify-self: center;
+    width: min(560px, 100%);
+  }
+}
+
+@media (max-width: 620px) {
+  .auth-hero {
+    display: none;
+  }
+
+  .auth-shell {
+    align-items: center;
+    min-height: 88vh;
+  }
+
+  .auth-card {
+    padding: 1.25rem;
+  }
+}

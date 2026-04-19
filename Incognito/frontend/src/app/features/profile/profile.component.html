@@ -1,0 +1,60 @@
+<app-page-header title="My Profile" subtitle="Review your account details and assigned platform role.">
+  <button actions mat-stroked-button class="btn-secondary" type="button" (click)="refresh()" [disabled]="loading() || uploading()">
+    Refresh
+  </button>
+</app-page-header>
+
+<app-loading-skeleton *ngIf="loading()" [rows]="2"></app-loading-skeleton>
+
+<mat-card *ngIf="!loading() && user() as currentUser" class="profile-card">
+  <div class="profile-card__hero">
+    <div class="profile-avatar" [class.profile-avatar--image]="!!avatarUrl()">
+      <img *ngIf="avatarUrl() as imageUrl; else initialsAvatar" [src]="imageUrl" [alt]="currentUser.fullName + ' profile picture'" />
+      <ng-template #initialsAvatar>
+        <span>{{ initials() }}</span>
+      </ng-template>
+    </div>
+    <div class="profile-card__hero-content">
+      <div class="profile-card__headings">
+        <h2>{{ currentUser.fullName }}</h2>
+        <p>{{ currentUser.email }}</p>
+        <span class="profile-role">{{ currentUser.role }}</span>
+      </div>
+
+      <div class="profile-photo-actions">
+        <input #profilePictureInput type="file" accept="image/png,image/jpeg,image/webp,image/gif" (change)="onFileSelected($event)" hidden />
+        <button mat-flat-button color="primary" type="button" (click)="profilePictureInput.click()" [disabled]="uploading()">
+          <mat-icon>photo_camera</mat-icon>
+          {{ uploading() ? 'Uploading...' : 'Upload Photo' }}
+        </button>
+        <small>Best result: square image. PNG, JPG, WEBP, or GIF up to 5MB.</small>
+      </div>
+    </div>
+  </div>
+
+  <dl class="profile-grid">
+    <div>
+      <dt>Full name</dt>
+      <dd>{{ currentUser.fullName }}</dd>
+    </div>
+    <div>
+      <dt>Email address</dt>
+      <dd>{{ currentUser.email }}</dd>
+    </div>
+    <div>
+      <dt>Role</dt>
+      <dd>{{ currentUser.role }}</dd>
+    </div>
+    <div>
+      <dt>Account status</dt>
+      <dd>Active</dd>
+    </div>
+  </dl>
+</mat-card>
+
+<app-empty-state
+  *ngIf="!loading() && !user()"
+  icon="person_off"
+  title="Profile unavailable"
+  message="We couldn't load your account details right now.">
+</app-empty-state>
