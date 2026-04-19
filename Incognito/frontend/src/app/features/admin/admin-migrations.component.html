@@ -1,0 +1,22 @@
+<app-page-header title="Migration History" subtitle="Review applied EF Core migrations from production history table.">
+  <a actions mat-stroked-button routerLink="/admin">Dashboard</a>
+  <button actions mat-flat-button color="primary" (click)="load()">Refresh</button>
+</app-page-header>
+
+<app-loading-skeleton *ngIf="loading()" [rows]="3"></app-loading-skeleton>
+
+<mat-card *ngIf="!loading() && migrations().length > 0">
+  <h3>Applied migrations ({{ migrations().length }})</h3>
+  <ol>
+    @for (migration of migrations(); track migration) {
+      <li>{{ migration }}</li>
+    }
+  </ol>
+</mat-card>
+
+<app-empty-state
+  *ngIf="!loading() && migrations().length === 0"
+  icon="rule"
+  title="No migration records"
+  message="The migration history table currently has no entries.">
+</app-empty-state>

@@ -1,0 +1,39 @@
+<app-page-header title="Audit Logs" subtitle="Track security-sensitive and lifecycle events across entities.">
+  <a actions mat-stroked-button routerLink="/admin">Dashboard</a>
+  <button actions mat-flat-button color="primary" (click)="load()">Refresh</button>
+</app-page-header>
+
+<app-filter-bar>
+  <app-search-box
+    label="Entity type"
+    placeholder="Proposal, User, Match..."
+    [value]="entityType()"
+    (valueChange)="updateEntityType($event)">
+  </app-search-box>
+
+  <app-search-box
+    label="Action"
+    placeholder="CREATE, UPDATE, DELETE..."
+    [value]="action()"
+    (valueChange)="updateAction($event)">
+  </app-search-box>
+</app-filter-bar>
+
+<app-loading-skeleton *ngIf="loading()" [rows]="4"></app-loading-skeleton>
+
+<section *ngIf="!loading() && (result()?.items?.length ?? 0) > 0">
+  <app-audit-timeline [logs]="result()!.items"></app-audit-timeline>
+
+  <footer class="pager">
+    <button mat-stroked-button (click)="previousPage()" [disabled]="page() <= 1">Previous</button>
+    <span>Page {{ result()!.page }} of {{ totalPages() }}</span>
+    <button mat-stroked-button (click)="nextPage()" [disabled]="!hasNextPage()">Next</button>
+  </footer>
+</section>
+
+<app-empty-state
+  *ngIf="!loading() && (result()?.items?.length ?? 0) === 0"
+  icon="history"
+  title="No audit entries"
+  message="No logs match the current filter set.">
+</app-empty-state>

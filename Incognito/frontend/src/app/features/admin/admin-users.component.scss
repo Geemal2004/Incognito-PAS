@@ -1,0 +1,58 @@
+mat-form-field {
+  width: 100%;
+}
+
+.create-card {
+  border-radius: 14px;
+  margin-bottom: 0.8rem;
+  padding: var(--space-5);
+}
+
+.create-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.user-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  align-items: start;
+}
+
+.user-card {
+  border-radius: 14px;
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.user-card p {
+  color: var(--text-main);
+  word-break: break-word;
+}
+
+.user-card small {
+  display: block;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+.actions {
+  margin-top: var(--space-3);
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 960px) {
+  .create-grid,
+  .user-grid {
+    grid-template-columns: 1fr;
+  }
+}
