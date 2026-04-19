@@ -1,0 +1,99 @@
+<main class="landing">
+  <section class="landing-hero">
+    <div class="hero-copy">
+      <p class="hero-kicker">Academic Project Approval System</p>
+      <h1>Incognito PAS</h1>
+      <p class="hero-lead">
+        Secure incognito matching for fair student-supervisor allocation.
+        Identity is revealed only after a confirmed match.
+      </p>
+
+      <div class="hero-actions">
+        <a mat-flat-button color="primary" routerLink="/auth/login">Login</a>
+        <a mat-stroked-button routerLink="/auth/register">Register</a>
+      </div>
+
+      <div class="hero-trust">
+        <div class="trust-item">
+          <mat-icon>visibility_off</mat-icon>
+          <span>Identity stays hidden during evaluation</span>
+        </div>
+        <div class="trust-item">
+          <mat-icon>balance</mat-icon>
+          <span>Merit-based supervision matching</span>
+        </div>
+        <div class="trust-item">
+          <mat-icon>verified_user</mat-icon>
+          <span>Controlled reveal after confirmation</span>
+        </div>
+      </div>
+    </div>
+
+    <mat-card class="hero-panel">
+      <p class="panel-eyebrow">Allocation Pipeline</p>
+      <h2>Blind Review First</h2>
+
+      <div class="panel-steps">
+        <div class="panel-step">
+          <span class="panel-step__num">01</span>
+          <div>
+            <h3>Submit Anonymously</h3>
+            <p>Student details are hidden while proposals are assessed.</p>
+          </div>
+        </div>
+
+        <div class="panel-step">
+          <span class="panel-step__num">02</span>
+          <div>
+            <h3>Review by Relevance</h3>
+            <p>Supervisors evaluate topic fit, not personal identity.</p>
+          </div>
+        </div>
+
+        <div class="panel-step">
+          <span class="panel-step__num">03</span>
+          <div>
+            <h3>Confirm and Reveal</h3>
+            <p>Identity reveals only after both sides commit to the match.</p>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </section>
+
+  <section class="process-section">
+    <div class="section-header">
+      <p class="section-kicker">How It Works</p>
+      <h2>Transparent Process, Protected Identity</h2>
+    </div>
+
+    <div class="process-grid">
+      <mat-card class="process-card">
+        <div class="process-card__top">
+          <span class="process-card__index">01</span>
+          <mat-icon>visibility_off</mat-icon>
+        </div>
+        <h3>Submit Anonymously</h3>
+        <p>Students submit proposals without exposing identity during review.</p>
+      </mat-card>
+
+      <mat-card class="process-card">
+        <div class="process-card__top">
+          <span class="process-card__index">02</span>
+          <mat-icon>rule</mat-icon>
+        </div>
+        <h3>Review Fairly</h3>
+        <p>Supervisors browse by research relevance, not personal identity.</p>
+      </mat-card>
+
+      <mat-card class="process-card">
+        <div class="process-card__top">
+          <span class="process-card__index">03</span>
+          <mat-icon>verified_user</mat-icon>
+        </div>
+        <h3>Reveal on Confirm</h3>
+        <p>Identity is revealed only after valid confirmation in the workflow.</p>
+      </mat-card>
+    </div>
+  </section>
+</main>

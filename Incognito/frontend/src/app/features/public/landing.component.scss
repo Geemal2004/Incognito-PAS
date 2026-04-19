@@ -1,0 +1,227 @@
+.landing {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.landing-hero {
+  border-radius: 24px;
+  padding: clamp(1.25rem, 2.8vw, 2.4rem);
+  background:
+    radial-gradient(circle at 88% 10%, rgba(27, 102, 201, 0.22), transparent 36%),
+    radial-gradient(circle at 8% 90%, rgba(57, 181, 74, 0.18), transparent 30%),
+    linear-gradient(120deg, #f2fbff 0%, #ebf6ff 45%, #eefaf2 100%);
+  border: 1px solid var(--surface-border-strong);
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  gap: clamp(1rem, 2.8vw, 2rem);
+  align-items: stretch;
+}
+
+.hero-copy {
+  display: grid;
+  align-content: center;
+  gap: var(--space-4);
+}
+
+.hero-kicker {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.1rem, 3.6vw, 3.4rem);
+  line-height: 1.05;
+  color: #0f3e7b;
+}
+
+.hero-lead {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 1.08rem;
+  color: var(--text-muted);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.hero-trust {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  width: fit-content;
+  border: 1px solid #c9dceb;
+  background: rgba(255, 255, 255, 0.72);
+  color: #1b4f80;
+  font-size: 0.84rem;
+  font-weight: 600;
+
+  mat-icon {
+    font-size: 1rem;
+    width: 1rem;
+    height: 1rem;
+    color: var(--accent-blue);
+  }
+}
+
+.hero-panel {
+  border-radius: 18px;
+  padding: var(--space-5);
+  border: 1px solid #c7dcec;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(242, 250, 245, 0.94) 100%);
+  box-shadow: 0 12px 28px rgba(15, 62, 123, 0.1);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.panel-eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #3d668f;
+}
+
+h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.panel-steps {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.panel-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-3);
+  align-items: start;
+
+  h3 {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  p {
+    margin: 0.2rem 0 0;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+}
+
+.panel-step__num {
+  min-width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(27, 102, 201, 0.14);
+  color: #1258ae;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.process-section {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.section-header {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.section-kicker {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--text-soft);
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.process-card {
+  border-radius: 16px;
+  padding: var(--space-5);
+  display: grid;
+  gap: var(--space-3);
+  background: linear-gradient(180deg, #ffffff 0%, #f7fcf8 100%);
+  border: 1px solid var(--surface-border);
+
+  h3 {
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+    color: var(--text-muted);
+  }
+}
+
+.process-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  mat-icon {
+    color: var(--accent-blue);
+  }
+}
+
+.process-card__index {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #3f6f9a;
+}
+
+@media (max-width: 1100px) {
+  .landing-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 960px) {
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .landing {
+    gap: var(--space-5);
+  }
+
+  .landing-hero {
+    border-radius: 18px;
+    padding: var(--space-4);
+  }
+
+  .hero-panel,
+  .process-card {
+    padding: var(--space-4);
+  }
+
+  .hero-lead {
+    font-size: 1rem;
+  }
+}
