@@ -1,0 +1,8 @@
+.search-box {
+  width: 100%;
+}
+
+.search-box mat-icon[matPrefix] {
+  margin-right: var(--space-2);
+  color: var(--text-soft);
+}

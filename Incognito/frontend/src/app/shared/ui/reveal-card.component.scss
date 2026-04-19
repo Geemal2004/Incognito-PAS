@@ -1,0 +1,61 @@
+.reveal-card {
+  border: 1px solid var(--surface-border-strong);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(
+    145deg,
+    #ffffff 0%,
+    color-mix(in srgb, var(--color-brand-blue) 8%, #ffffff) 48%,
+    color-mix(in srgb, var(--color-brand-green) 10%, #ffffff) 100%
+  );
+  padding: var(--space-5);
+  display: grid;
+  gap: var(--space-5);
+}
+
+.reveal-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.reveal-card__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--status-revealed-fg);
+  background: color-mix(in srgb, var(--status-revealed-fg) 14%, #ffffff);
+  border: 1px solid color-mix(in srgb, var(--status-revealed-fg) 24%, #ffffff);
+}
+
+.reveal-card__subtitle {
+  margin-top: var(--space-2);
+  color: var(--text-muted);
+}
+
+.reveal-card__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.reveal-card__grid div {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.reveal-card__grid dt {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-soft);
+}
+
+.reveal-card__grid dd {
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-main);
+}

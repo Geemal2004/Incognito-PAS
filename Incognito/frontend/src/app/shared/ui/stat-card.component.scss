@@ -1,0 +1,58 @@
+.stat-card {
+  position: relative;
+  border: 1px solid var(--surface-border);
+  border-radius: 16px;
+  padding: 1rem 1rem 1.05rem;
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-brand-blue) 0%, var(--color-brand-lime) 100%);
+}
+
+.label {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 700;
+}
+
+h3 {
+  margin: 0.55rem 0 0.25rem;
+  font-size: clamp(1.5rem, 2.1vw, 2rem);
+  font-weight: 800;
+  color: var(--bg-contrast);
+}
+
+small {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.tone-pending::before {
+  background: var(--status-pending-fg);
+}
+
+.tone-review::before {
+  background: var(--status-review-fg);
+}
+
+.tone-matched::before {
+  background: var(--status-matched-fg);
+}
+
+.tone-revealed::before {
+  background: var(--status-revealed-fg);
+}
+
+.tone-danger::before {
+  background: var(--status-withdrawn-fg);
+}

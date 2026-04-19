@@ -1,0 +1,95 @@
+:host {
+  display: block;
+}
+
+.expertise-chip-set {
+  display: block;
+}
+
+:host ::ng-deep .expertise-chip-set .mdc-evolution-chip-set__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.expertise-chip.mat-mdc-chip {
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-brand-green) 45%, #ffffff);
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(26, 47, 90, 0.06);
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+
+  --mdc-chip-container-height: 2.55rem;
+  --mdc-chip-outline-width: 0;
+  --mdc-chip-outline-color: transparent;
+  --mdc-chip-disabled-outline-color: transparent;
+  --mdc-chip-focus-outline-color: transparent;
+  --mdc-chip-hover-state-layer-color: transparent;
+  --mdc-chip-focus-state-layer-color: transparent;
+  --mdc-chip-selected-hover-state-layer-color: transparent;
+  --mdc-chip-selected-focus-state-layer-color: transparent;
+  --mdc-chip-hover-state-layer-opacity: 0;
+  --mdc-chip-focus-state-layer-opacity: 0;
+  --mdc-chip-selected-hover-state-layer-opacity: 0;
+  --mdc-chip-selected-focus-state-layer-opacity: 0;
+  --mat-chip-trailing-action-state-layer-color: transparent;
+  --mat-chip-selected-trailing-action-state-layer-color: transparent;
+  --mdc-chip-label-text-size: 1.03rem;
+  --mdc-chip-label-text-weight: 600;
+  --mdc-chip-label-text-color: var(--bg-contrast);
+}
+
+.expertise-chip.mat-mdc-chip:hover {
+  background: color-mix(in srgb, var(--color-brand-green) 14%, #ffffff);
+  border-color: color-mix(in srgb, var(--color-brand-green) 64%, #ffffff);
+  box-shadow: 0 6px 14px rgba(57, 180, 74, 0.16);
+  transform: translateY(-1px);
+}
+
+.expertise-chip.mat-mdc-chip.selected {
+  background: linear-gradient(135deg, var(--color-brand-green) 0%, var(--color-brand-lime) 100%);
+  border-color: color-mix(in srgb, var(--color-brand-green) 75%, #1f5f2f);
+  box-shadow: 0 8px 18px rgba(57, 180, 74, 0.26);
+  transform: translateY(-1px);
+  --mdc-chip-label-text-color: #ffffff;
+}
+
+:host ::ng-deep .expertise-chip.mdc-evolution-chip,
+:host ::ng-deep .expertise-chip .mat-mdc-chip-focus-overlay,
+:host ::ng-deep .expertise-chip .mdc-evolution-chip__action {
+  border-radius: 999px !important;
+}
+
+:host ::ng-deep .expertise-chip .mat-mdc-chip-focus-overlay {
+  background: transparent;
+}
+
+:host ::ng-deep .expertise-chip .mdc-evolution-chip__action::before,
+:host ::ng-deep .expertise-chip .mdc-evolution-chip__action::after,
+:host ::ng-deep .expertise-chip .mat-ripple-element {
+  opacity: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+:host ::ng-deep .expertise-chip .mdc-evolution-chip__text-label {
+  letter-spacing: 0.01em;
+}
+
+:host ::ng-deep .expertise-chip.selected .mdc-evolution-chip__text-label {
+  color: #ffffff;
+}
+
+.expertise-chip.mat-mdc-chip:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-brand-green) 64%, #ffffff);
+  outline-offset: 2px;
+}
+
+@media (max-width: 700px) {
+  .expertise-chip.mat-mdc-chip {
+    --mdc-chip-container-height: 2.25rem;
+    --mdc-chip-label-text-size: 0.95rem;
+  }
+}
