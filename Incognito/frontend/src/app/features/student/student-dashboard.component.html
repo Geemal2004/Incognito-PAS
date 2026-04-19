@@ -1,0 +1,61 @@
+<app-page-header title="Student Dashboard" subtitle="Monitor proposal progress and keep your incognito matching submissions up to date.">
+  <a actions mat-flat-button class="btn-primary" routerLink="/student/create">Submit New Proposal</a>
+</app-page-header>
+
+<app-loading-skeleton *ngIf="loading()" [rows]="4"></app-loading-skeleton>
+
+<ng-container *ngIf="!loading() && dashboard() as d">
+  <section class="stats-grid">
+    <app-stat-card label="Total Proposals" [value]="d.totalProposals" hint="All your submissions"></app-stat-card>
+    <app-stat-card label="Pending" [value]="d.pendingCount" hint="Awaiting supervisor interest" tone="pending"></app-stat-card>
+    <app-stat-card label="Under Review" [value]="d.underReviewCount" hint="Supervisor engagement in progress" tone="review"></app-stat-card>
+    <app-stat-card label="Matched" [value]="d.matchedCount" hint="Confirmed allocations" tone="matched"></app-stat-card>
+  </section>
+
+  <section class="dashboard-grid">
+    <article class="ui-card quick-action-card">
+      <p class="ui-eyebrow">Quick Action</p>
+      <h3>Prepare your next project idea</h3>
+      <p>
+        Use clear abstracts and focused technical stacks to improve supervisor understanding while preserving anonymity.
+      </p>
+      <a mat-flat-button class="btn-primary" routerLink="/student/create">Create Proposal</a>
+    </article>
+
+    <article class="ui-card recent-panel">
+      <div class="section-head">
+        <h3>Recent proposals</h3>
+        <a mat-stroked-button class="btn-secondary" routerLink="/student/proposals">View All</a>
+      </div>
+
+      <div class="recent-list" *ngIf="d.recentProposals.length > 0; else noRecentProposals">
+        @for (item of d.recentProposals; track item.id) {
+          <article class="recent-card">
+            <div class="recent-card__head">
+              <h4>{{ item.title }}</h4>
+              <app-status-badge [status]="item.status"></app-status-badge>
+            </div>
+
+            <p class="recent-card__abstract">{{ item.abstract }}</p>
+
+            <div class="recent-card__meta">
+              <span>{{ item.researchAreaName }}</span>
+              <span>Submitted {{ item.createdAt | date: 'mediumDate' }}</span>
+            </div>
+
+            <a mat-button class="btn-secondary" [routerLink]="['/student/proposals', item.id]">Open Details</a>
+          </article>
+        }
+      </div>
+
+      <ng-template #noRecentProposals>
+        <app-empty-state
+          icon="assignment"
+          title="No submissions yet"
+          message="Create your first proposal to enter the incognito matching workflow.">
+          <a mat-flat-button class="btn-primary" routerLink="/student/create">Create Proposal</a>
+        </app-empty-state>
+      </ng-template>
+    </article>
+  </section>
+</ng-container>
