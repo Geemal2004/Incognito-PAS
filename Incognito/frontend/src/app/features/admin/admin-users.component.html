@@ -1,0 +1,77 @@
+<app-page-header title="User Management" subtitle="Create accounts and deactivate access across all roles.">
+  <a actions mat-stroked-button routerLink="/admin">Dashboard</a>
+</app-page-header>
+
+<mat-card class="create-card">
+  <h3>Create user account</h3>
+  <form [formGroup]="createForm" (ngSubmit)="createUser()" class="create-grid">
+    <mat-form-field appearance="outline">
+      <mat-label>Full name</mat-label>
+      <input matInput formControlName="fullName" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" type="password" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Role</mat-label>
+      <mat-select formControlName="role">
+        <mat-option value="Student">Student</mat-option>
+        <mat-option value="Supervisor">Supervisor</mat-option>
+        <mat-option value="ModuleLeader">ModuleLeader</mat-option>
+        <mat-option value="SysAdmin">SysAdmin</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" type="submit">Create user</button>
+  </form>
+</mat-card>
+
+<app-filter-bar>
+  <app-search-box
+    label="Search users"
+    placeholder="Name or email"
+    [value]="search()"
+    (valueChange)="updateSearch($event)">
+  </app-search-box>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Role filter</mat-label>
+    <mat-select [ngModel]="roleFilter()" (ngModelChange)="updateRoleFilter($event)">
+      <mat-option value="">All</mat-option>
+      <mat-option value="Student">Student</mat-option>
+      <mat-option value="Supervisor">Supervisor</mat-option>
+      <mat-option value="ModuleLeader">ModuleLeader</mat-option>
+      <mat-option value="SysAdmin">SysAdmin</mat-option>
+    </mat-select>
+  </mat-form-field>
+</app-filter-bar>
+
+<app-loading-skeleton *ngIf="loading()" [rows]="4"></app-loading-skeleton>
+
+<section *ngIf="!loading() && filteredUsers().length > 0" class="user-grid">
+  @for (user of filteredUsers(); track user.id) {
+    <mat-card class="user-card">
+      <h3>{{ user.fullName }}</h3>
+      <p>{{ user.email }}</p>
+      <small>{{ user.role }} • {{ user.isActive ? 'Active' : 'Inactive' }}</small>
+      <div class="actions" *ngIf="user.isActive">
+        <button mat-button color="warn" type="button" (click)="deactivateUser(user.id)">Deactivate</button>
+      </div>
+    </mat-card>
+  }
+</section>
+
+<app-empty-state
+  *ngIf="!loading() && filteredUsers().length === 0"
+  icon="manage_accounts"
+  title="No users found"
+  message="Try adjusting your search or role filter.">
+</app-empty-state>

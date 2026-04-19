@@ -1,0 +1,15 @@
+.pager {
+  margin-top: var(--space-4);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  align-items: center;
+  color: var(--text-muted);
+}
+
+@media (max-width: 600px) {
+  .pager {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
