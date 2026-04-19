@@ -1,0 +1,29 @@
+.empty-state {
+  border-style: dashed;
+  border-color: var(--surface-border);
+  padding: var(--space-7) var(--space-5);
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  background: var(--color-bg-surface);
+}
+
+.empty-state__icon {
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--color-brand-blue) 12%, #ffffff);
+  color: var(--accent-blue);
+}
+
+.empty-state h3 {
+  margin-top: var(--space-1);
+}
+
+.empty-state p {
+  max-width: 52ch;
+  color: var(--text-muted);
+}

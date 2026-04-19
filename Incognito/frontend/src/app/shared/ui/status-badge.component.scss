@@ -1,0 +1,47 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.pending {
+  background: var(--status-pending-bg);
+  color: var(--status-pending-fg);
+  border-color: color-mix(in srgb, var(--status-pending-fg) 24%, #ffffff);
+}
+
+.review {
+  background: var(--status-review-bg);
+  color: var(--status-review-fg);
+  border-color: color-mix(in srgb, var(--status-review-fg) 24%, #ffffff);
+}
+
+.matched {
+  background: var(--status-matched-bg);
+  color: var(--status-matched-fg);
+  border-color: color-mix(in srgb, var(--status-matched-fg) 24%, #ffffff);
+}
+
+.withdrawn {
+  background: var(--status-withdrawn-bg);
+  color: var(--status-withdrawn-fg);
+  border-color: color-mix(in srgb, var(--status-withdrawn-fg) 24%, #ffffff);
+}
+
+.revealed {
+  background: var(--status-revealed-bg);
+  color: var(--status-revealed-fg);
+  border-color: color-mix(in srgb, var(--status-revealed-fg) 24%, #ffffff);
+}
+
+.default {
+  background: var(--color-bg-sidebar);
+  color: var(--text-muted);
+  border-color: var(--surface-border);
+}

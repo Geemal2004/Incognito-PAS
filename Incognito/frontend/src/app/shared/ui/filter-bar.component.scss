@@ -1,0 +1,26 @@
+.filter-bar {
+  margin-bottom: var(--space-5);
+  padding: var(--space-4);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-surface);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: var(--space-4);
+  align-items: end;
+}
+
+.filter-bar > * {
+  min-width: 0;
+}
+
+:host ::ng-deep .mat-mdc-form-field {
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  .filter-bar {
+    padding: var(--space-3);
+    gap: var(--space-3);
+  }
+}

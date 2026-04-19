@@ -1,0 +1,32 @@
+.skeleton-wrap {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.skeleton {
+  height: 68px;
+  border-radius: 14px;
+  border: 1px solid var(--surface-border);
+  background: linear-gradient(
+    100deg,
+    color-mix(in srgb, var(--color-brand-blue) 10%, #ffffff) 20%,
+    #ffffff 45%,
+    color-mix(in srgb, var(--color-brand-blue) 10%, #ffffff) 70%
+  );
+  background-size: 220% 100%;
+  animation: shimmer 1.3s linear infinite;
+}
+
+.skeleton:nth-child(even) {
+  height: 58px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
+}
