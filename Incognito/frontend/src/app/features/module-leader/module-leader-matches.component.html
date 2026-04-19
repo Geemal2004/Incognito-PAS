@@ -1,0 +1,62 @@
+<app-page-header title="Match Oversight" subtitle="Review confirmed assignments and reassign where needed.">
+  <a actions mat-stroked-button routerLink="/module-leader">Dashboard</a>
+</app-page-header>
+
+<app-filter-bar>
+  <app-search-box
+    label="Search matches"
+    placeholder="Student, supervisor, or project title"
+    [value]="search()"
+    (valueChange)="updateSearch($event)">
+  </app-search-box>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Status</mat-label>
+    <mat-select [ngModel]="status()" (ngModelChange)="updateStatus($event)">
+      <mat-option value="">All</mat-option>
+      <mat-option value="Matched">Matched</mat-option>
+      <mat-option value="UnderReview">UnderReview</mat-option>
+      <mat-option value="Withdrawn">Withdrawn</mat-option>
+    </mat-select>
+  </mat-form-field>
+</app-filter-bar>
+
+<app-loading-skeleton *ngIf="loading()" [rows]="4"></app-loading-skeleton>
+
+<section *ngIf="!loading() && matches().length > 0" class="match-grid">
+  @for (item of matches(); track item.matchId) {
+    <mat-card class="match-card">
+      <h3 class="match-card__title">{{ item.projectTitle }}</h3>
+
+      <div class="match-card__meta">
+        <p class="match-card__line"><strong>Student:</strong> {{ item.studentName }} ({{ item.studentEmail }})</p>
+        <p class="match-card__line"><strong>Supervisor:</strong> {{ item.supervisorName }} ({{ item.supervisorEmail }})</p>
+        <p class="match-card__line"><strong>Research area:</strong> {{ item.researchArea }}</p>
+      </div>
+
+      <small *ngIf="item.confirmedAt" class="match-card__confirmed">Confirmed {{ item.confirmedAt | date:'medium' }}</small>
+
+      <div class="reassign-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Reassign supervisor</mat-label>
+          <mat-select
+            [ngModel]="selectedSupervisorByMatch()[item.matchId] || ''"
+            (ngModelChange)="setSupervisor(item.matchId, $event)">
+            <mat-option value="">Select supervisor</mat-option>
+            @for (supervisor of supervisors(); track supervisor.id) {
+              <mat-option [value]="supervisor.id">{{ supervisor.fullName }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <button mat-flat-button color="primary" (click)="reassign(item.matchId)">Reassign</button>
+      </div>
+    </mat-card>
+  }
+</section>
+
+<app-empty-state
+  *ngIf="!loading() && matches().length === 0"
+  icon="groups"
+  title="No matches available"
+  message="No confirmed matches currently match your filters.">
+</app-empty-state>
