@@ -1,0 +1,31 @@
+.expertise-card {
+  border-radius: 14px;
+  padding: var(--space-5);
+  display: grid;
+  gap: var(--space-4);
+}
+
+.hint {
+  margin: 0;
+  color: var(--text-soft);
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 600px) {
+  .expertise-card {
+    padding: var(--space-4);
+  }
+
+  .actions {
+    justify-content: stretch;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+}

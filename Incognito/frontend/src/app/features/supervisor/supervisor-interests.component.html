@@ -1,0 +1,28 @@
+<app-page-header title="My Interests" subtitle="Review proposals you expressed interest in and confirm when ready.">
+  <a actions mat-stroked-button class="btn-secondary" routerLink="/supervisor/browse">Browse Proposals</a>
+</app-page-header>
+
+<app-loading-skeleton *ngIf="loading()" [rows]="4"></app-loading-skeleton>
+
+<section *ngIf="!loading() && interests().length > 0" class="interest-grid">
+  @for (item of interests(); track item.matchId) {
+    <app-proposal-card
+      [title]="item.title ?? 'Untitled project'"
+      [abstract]="item.abstract ?? ''"
+      [researchArea]="item.researchAreaName ?? 'Unspecified area'"
+      [techStack]="item.technicalStack ?? ''"
+      status="UnderReview">
+      <div actions>
+        <button mat-flat-button class="btn-primary" (click)="confirm(item.matchId)">Confirm Match</button>
+      </div>
+    </app-proposal-card>
+  }
+</section>
+
+<app-empty-state
+  *ngIf="!loading() && interests().length === 0"
+  icon="favorite"
+  title="No interests yet"
+  message="Express interest in suitable proposals to start your matching queue.">
+  <a mat-flat-button class="btn-primary" routerLink="/supervisor/browse">Browse Proposals</a>
+</app-empty-state>

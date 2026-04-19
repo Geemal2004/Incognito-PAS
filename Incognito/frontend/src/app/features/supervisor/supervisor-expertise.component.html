@@ -1,0 +1,28 @@
+<app-page-header title="Expertise Profile" subtitle="Select your strongest areas to improve matching quality.">
+  <a actions mat-stroked-button class="btn-secondary" routerLink="/supervisor">Dashboard</a>
+</app-page-header>
+
+<app-loading-skeleton *ngIf="loading()" [rows]="3"></app-loading-skeleton>
+
+<mat-card *ngIf="!loading() && allAreas().length > 0" class="expertise-card">
+  <p class="hint">Selected: {{ selectedIds().length }} areas</p>
+
+  <app-expertise-chip-selector
+    [areas]="allAreas()"
+    [selectedIds]="selectedIds()"
+    (selectedIdsChange)="updateSelection($event)">
+  </app-expertise-chip-selector>
+
+  <div class="actions">
+    <button mat-flat-button class="btn-primary" [disabled]="saving()" (click)="save()">
+      {{ saving() ? 'Saving...' : 'Save expertise' }}
+    </button>
+  </div>
+</mat-card>
+
+<app-empty-state
+  *ngIf="!loading() && allAreas().length === 0"
+  icon="hub"
+  title="No research areas configured"
+  message="Ask a module leader to define research areas before setting your expertise.">
+</app-empty-state>

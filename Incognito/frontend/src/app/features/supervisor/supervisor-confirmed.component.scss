@@ -1,0 +1,30 @@
+.confirmed-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.confirmed-card {
+  padding: var(--space-4);
+  display: grid;
+  gap: var(--space-2);
+
+  p {
+    color: var(--text-muted);
+  }
+
+  small {
+    margin-top: var(--space-1);
+    color: var(--text-soft);
+  }
+}
+
+h3 {
+  margin-top: var(--space-1);
+}
+
+@media (max-width: 960px) {
+  .confirmed-grid {
+    grid-template-columns: 1fr;
+  }
+}
