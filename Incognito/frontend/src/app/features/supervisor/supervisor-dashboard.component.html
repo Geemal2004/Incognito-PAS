@@ -1,0 +1,49 @@
+<app-page-header title="Supervisor Dashboard" subtitle="Monitor active interests, confirmations, and expertise alignment.">
+  <a actions mat-flat-button class="btn-primary" routerLink="/supervisor/browse">Browse Blind Proposals</a>
+</app-page-header>
+
+<app-loading-skeleton *ngIf="loading()" [rows]="4"></app-loading-skeleton>
+
+<ng-container *ngIf="!loading() && dashboard() as d">
+  <section class="stats-grid">
+    <app-stat-card label="Interests" [value]="d.totalInterests" hint="Awaiting confirmation" tone="review"></app-stat-card>
+    <app-stat-card label="Confirmed" [value]="d.confirmedMatches" hint="Identity already revealed" tone="matched"></app-stat-card>
+    <app-stat-card label="Expertise Areas" [value]="d.expertiseAreas" hint="Used for better proposal fit" tone="revealed"></app-stat-card>
+  </section>
+
+  <section class="dashboard-grid">
+    <article class="ui-card quick-actions">
+      <h3>Quick Actions</h3>
+      <p>Move through the blind-match workflow with fewer clicks.</p>
+
+      <div class="action-grid">
+        <a mat-stroked-button class="btn-secondary" routerLink="/supervisor/interests">Review Interests</a>
+        <a mat-stroked-button class="btn-secondary" routerLink="/supervisor/confirmed">View Confirmed</a>
+        <a mat-stroked-button class="btn-secondary" routerLink="/supervisor/browse">Browse Proposals</a>
+        <a mat-flat-button class="btn-primary" routerLink="/supervisor/expertise">Manage Expertise</a>
+      </div>
+    </article>
+
+    <article class="ui-card expertise-card">
+      <div class="expertise-card__head">
+        <h3>Current Expertise Profile</h3>
+        <a mat-button class="btn-secondary" routerLink="/supervisor/expertise">Edit</a>
+      </div>
+
+      <div class="chip-wrap" *ngIf="d.expertise.length > 0; else noExpertise">
+        @for (area of d.expertise; track area.id) {
+          <span class="expertise-chip">{{ area.name }}</span>
+        }
+      </div>
+
+      <ng-template #noExpertise>
+        <app-empty-state
+          icon="interests"
+          title="No expertise areas selected"
+          message="Add expertise tags so the system can prioritize relevant proposals.">
+          <a mat-flat-button class="btn-primary" routerLink="/supervisor/expertise">Set Expertise</a>
+        </app-empty-state>
+      </ng-template>
+    </article>
+  </section>
+</ng-container>
