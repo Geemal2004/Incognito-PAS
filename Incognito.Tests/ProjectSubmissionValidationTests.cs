@@ -4,6 +4,7 @@ using Moq;
 
 namespace Incognito.Tests;
 
+// INTEGRATION TESTS: verifies ProposalService validation with EF Core InMemory persistence and mocked identity dependencies.
 public class ProjectSubmissionValidationTests
 {
     [Fact]
@@ -32,6 +33,8 @@ public class ProjectSubmissionValidationTests
         var result = await service.CreateProposalAsync(proposal, "student-1");
 
         Assert.Equal(ProposalStatus.Pending, result.Status);
+        userManager.Verify(x => x.FindByIdAsync("student-1"), Times.Once);
+        userManager.Verify(x => x.GetRolesAsync(It.Is<ApplicationUser>(u => u.Id == "student-1")), Times.Once);
     }
 
     [Fact]
@@ -58,6 +61,8 @@ public class ProjectSubmissionValidationTests
         };
 
         await Assert.ThrowsAsync<ValidationException>(() => service.CreateProposalAsync(proposal, "student-1"));
+        userManager.Verify(x => x.FindByIdAsync(It.IsAny<string>()), Times.Never);
+        userManager.Verify(x => x.GetRolesAsync(It.IsAny<ApplicationUser>()), Times.Never);
     }
 
     [Fact]
@@ -82,5 +87,7 @@ public class ProjectSubmissionValidationTests
         };
 
         await Assert.ThrowsAsync<InvalidOperationException>(() => service.CreateProposalAsync(proposal, "student-1"));
+        userManager.Verify(x => x.FindByIdAsync("student-1"), Times.Once);
+        userManager.Verify(x => x.GetRolesAsync(It.Is<ApplicationUser>(u => u.Id == "student-1")), Times.Once);
     }
 }
