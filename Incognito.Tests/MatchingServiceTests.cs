@@ -7,6 +7,8 @@ using IncognitoPAS.Services;
 
 namespace Incognito.Tests;
 
+// SERVICE TESTS (unit-style with persistence):
+// Uses EF Core InMemory for workflow state and Moq for audit dependency verification.
 public class MatchingServiceTests : IDisposable
 {
     private readonly ApplicationDbContext _context;
@@ -89,6 +91,17 @@ public class MatchingServiceTests : IDisposable
         result.Should().NotBeNull();
         result.IsConfirmed.Should().BeFalse();
         result.IsRevealed.Should().BeFalse();
+
+        _auditServiceMock.Verify(
+            a => a.LogAsync(
+                "InterestExpressed",
+                nameof(SupervisorMatch),
+                It.IsAny<string>(),
+                "supervisor1",
+                It.IsAny<object?>(),
+                It.IsAny<object?>(),
+                It.IsAny<string?>()),
+            Times.Once);
     }
 
     [Fact]
@@ -108,6 +121,27 @@ public class MatchingServiceTests : IDisposable
 
         var proposal = await _context.Proposals.FindAsync(1);
         proposal!.Status.Should().Be(ProposalStatus.Matched);
+
+        _auditServiceMock.Verify(
+            a => a.LogAsync(
+                "MatchConfirmed",
+                nameof(SupervisorMatch),
+                It.IsAny<string>(),
+                "supervisor1",
+                It.IsAny<object?>(),
+                It.IsAny<object?>(),
+                It.IsAny<string?>()),
+            Times.Once);
+        _auditServiceMock.Verify(
+            a => a.LogAsync(
+                "IdentityRevealed",
+                nameof(SupervisorMatch),
+                It.IsAny<string>(),
+                "supervisor1",
+                It.IsAny<object?>(),
+                It.IsAny<object?>(),
+                It.IsAny<string?>()),
+            Times.Once);
     }
 
     [Fact]
@@ -120,6 +154,18 @@ public class MatchingServiceTests : IDisposable
         // Act & Assert
         await Assert.ThrowsAsync<InvalidOperationException>(
             () => _service.ConfirmMatchAsync("supervisor1", 1));
+
+        // 1 from express interest + 2 from first confirm. No additional audit on failed re-confirm.
+        _auditServiceMock.Verify(
+            a => a.LogAsync(
+                It.IsAny<string>(),
+                It.IsAny<string>(),
+                It.IsAny<string>(),
+                It.IsAny<string?>(),
+                It.IsAny<object?>(),
+                It.IsAny<object?>(),
+                It.IsAny<string?>()),
+            Times.Exactly(3));
     }
 
     [Fact]
@@ -139,7 +185,7 @@ public class MatchingServiceTests : IDisposable
     }
 
     [Fact]
-    public async Task GetAnonymousProposals_NeverReturnsStudentIdentity()
+    public async Task GetRevealedMatchForStudent_ReturnsNull_WhenNotRevealedYet()
     {
         // Arrange
         var supervisorExpertise = new SupervisorExpertise
@@ -167,6 +213,18 @@ public class MatchingServiceTests : IDisposable
         // Act & Assert
         await Assert.ThrowsAsync<InvalidOperationException>(
             () => _service.ExpressInterestAsync("supervisor1", 1));
+
+        // No additional audit entry should be written after duplicate-interest validation fails.
+        _auditServiceMock.Verify(
+            a => a.LogAsync(
+                It.IsAny<string>(),
+                It.IsAny<string>(),
+                It.IsAny<string>(),
+                It.IsAny<string?>(),
+                It.IsAny<object?>(),
+                It.IsAny<object?>(),
+                It.IsAny<string?>()),
+            Times.Once);
     }
 
     public void Dispose()

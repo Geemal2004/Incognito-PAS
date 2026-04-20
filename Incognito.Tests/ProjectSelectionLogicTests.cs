@@ -4,6 +4,7 @@ using Moq;
 
 namespace Incognito.Tests;
 
+// INTEGRATION TESTS: uses EF Core InMemory context to verify selection, confirmation, and duplicate-interest persistence rules.
 public class ProjectSelectionLogicTests
 {
     [Fact]

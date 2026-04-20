@@ -4,6 +4,7 @@ using Moq;
 
 namespace Incognito.Tests;
 
+// INTEGRATION TESTS: uses EF Core InMemory context to verify supervisor-expertise filtering against persisted proposals.
 public class MatchingLogicTests
 {
     [Fact]

@@ -8,6 +8,7 @@ using IncognitoPAS.Services;
 
 namespace Incognito.Tests;
 
+// INTEGRATION TESTS: end-to-end service workflow checks with EF Core InMemory state transitions and reveal behavior.
 public class ProposalIntegrationTests : IDisposable
 {
     private readonly ApplicationDbContext _context;

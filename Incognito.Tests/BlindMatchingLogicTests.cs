@@ -5,6 +5,7 @@ using Moq;
 
 namespace Incognito.Tests;
 
+// INTEGRATION TESTS: uses EF Core InMemory context to verify blind-matching and identity-reveal workflow behavior.
 public class BlindMatchingLogicTests
 {
     [Fact]

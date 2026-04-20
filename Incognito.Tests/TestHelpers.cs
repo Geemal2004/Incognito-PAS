@@ -10,6 +10,7 @@ using Moq;
 
 namespace Incognito.Tests;
 
+// HELPERS: shared factories for EF Core InMemory context and Identity mocks used across tests.
 public static class TestHelpers
 {
     public static ApplicationDbContext CreateContext()

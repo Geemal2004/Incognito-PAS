@@ -1,58 +1,80 @@
 namespace Incognito.Tests;
 
 /// <summary>
-/// Functional test cases documented as comments.
-/// These are designed for manual testing and documentation purposes.
+/// FUNCTIONAL TESTS: documented manual user journeys and security checks.
+/// These cases are evidence of manual validation and are executed in the running application.
 /// </summary>
-public class FunctionalTestCases
+public static class FunctionalTestCases
 {
-    // TC-F01: Login with invalid password → expect validation error on login page
-    // Steps: Navigate to /Account/Login, enter valid email, enter wrong password, click Login
-    // Expected: Error message displayed, user remains on login page
-    // Test Type: Manual/Functional
-
-    // TC-F02: Student submits proposal without abstract → form rejects submission
-    // Steps: Login as Student, navigate to /Student/Create, fill Title and TechStack only, click Submit
-    // Expected: Validation error "Abstract must be between 100 and 1000 characters"
-    // Test Type: Manual/Functional
-
-    // TC-F03: Supervisor browses proposals → no student names visible anywhere
-    // Steps: Login as Supervisor, navigate to /Supervisor/Browse
-    // Expected: Table shows Title, Abstract, TechStack, Research Area - NO student names or IDs
-    // Test Type: Manual/Functional
-
-    // TC-F04: Supervisor confirms match → both parties see identity reveal card
-    // Steps: Supervisor browses, expresses interest, confirms match
-    // Expected: Supervisor sees confirmation with revealed student details. Student sees RevealCard partial.
-    // Test Type: Manual/Integration
-
-    // TC-F05: Student tries to edit Matched proposal → redirect with error message
-    // Steps: Student has matched proposal, tries to navigate to /Student/Edit/{id}
-    // Expected: Redirect to Dashboard with error TempData["Error"] = "Only pending proposals can be edited."
-    // Test Type: Manual/Functional
-
-    // TC-F06: Unauthenticated user accesses /Student/Dashboard → redirect to login
-    // Steps: Close all sessions, navigate directly to /Student/Dashboard
-    // Expected: 302 redirect to /Account/Login?ReturnUrl=/Student/Dashboard
-    // Test Type: Manual/Security
-
-    // TC-F07: Student role accesses /Supervisor/Browse → 403 Access Denied page
-    // Steps: Login as Student, try to navigate to /Supervisor/Browse
-    // Expected: 403 error page or redirect to appropriate error page
-    // Test Type: Manual/Security
-
-    // TC-F08: ModuleLeader creates research area → appears in dropdowns
-    // Steps: Login as ModuleLeader, navigate to /ModuleLeader/CreateResearchArea, create "Blockchain"
-    // Expected: New area appears in Student/Create dropdown and Supervisor/SetExpertise
-    // Test Type: Manual/Functional
-
-    // TC-F09: SysAdmin creates new user → user can login immediately
-    // Steps: Login as SysAdmin, navigate to /Admin/CreateUser, create new Student
-    // Expected: New user can login with provided credentials
-    // Test Type: Manual/Functional
-
-    // TC-F10: BlindProposalDto never leaks identity → security validation
-    // Steps: Inspect network responses when Supervisor browses proposals
-    // Expected: No StudentId, StudentName, or any user identity field in JSON responses
-    // Test Type: Security/Manual
+    public static IReadOnlyList<ManualFunctionalCase> Cases { get; } =
+        new List<ManualFunctionalCase>
+        {
+            new(
+                "TC-F01",
+                "Login with invalid password is rejected",
+                "Navigate to /Account/Login, enter valid email and wrong password, then submit.",
+                "Error is shown and user remains on login page.",
+                "Manual/Functional"),
+            new(
+                "TC-F02",
+                "Student submission without abstract is blocked",
+                "Login as Student, open create proposal, leave abstract empty, submit.",
+                "Validation error for abstract length is displayed.",
+                "Manual/Functional"),
+            new(
+                "TC-F03",
+                "Supervisor blind browse hides student identity",
+                "Login as Supervisor and open blind proposal browsing.",
+                "Only proposal content and research-fit fields are shown; no student identity fields.",
+                "Manual/Functional"),
+            new(
+                "TC-F04",
+                "Confirmed match reveals identities",
+                "Supervisor expresses interest and confirms a match.",
+                "Supervisor and student views both show revealed counterpart identity after confirmation.",
+                "Manual/Integration"),
+            new(
+                "TC-F05",
+                "Matched proposal cannot be edited",
+                "Student with matched proposal navigates to edit route.",
+                "User is blocked and receives pending-only edit restriction message.",
+                "Manual/Functional"),
+            new(
+                "TC-F06",
+                "Unauthenticated access redirects to login",
+                "Sign out and navigate directly to a protected student route.",
+                "Request is redirected to login with return URL.",
+                "Manual/Security"),
+            new(
+                "TC-F07",
+                "Role guard blocks unauthorized supervisor route access",
+                "Login as Student and navigate to supervisor-only browse route.",
+                "Access denied behavior is triggered.",
+                "Manual/Security"),
+            new(
+                "TC-F08",
+                "New research area appears in dependent flows",
+                "Create research area as ModuleLeader and revisit student/supervisor forms.",
+                "New area appears in proposal and expertise selection.",
+                "Manual/Functional"),
+            new(
+                "TC-F09",
+                "Admin-created user can sign in",
+                "Create a new student user from admin panel and attempt login.",
+                "New user credentials are accepted.",
+                "Manual/Functional"),
+            new(
+                "TC-F10",
+                "Blind proposal API payload never leaks identity",
+                "Inspect supervisor browse network responses.",
+                "Response payload excludes StudentId, StudentName, and student email fields.",
+                "Manual/Security")
+        };
 }
+
+public sealed record ManualFunctionalCase(
+    string Id,
+    string Scenario,
+    string Steps,
+    string ExpectedResult,
+    string Category);

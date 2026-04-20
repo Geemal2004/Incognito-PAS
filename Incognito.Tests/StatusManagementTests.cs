@@ -4,6 +4,7 @@ using Moq;
 
 namespace Incognito.Tests;
 
+// INTEGRATION TESTS: verifies persisted proposal status transition rules using EF Core InMemory.
 public class StatusManagementTests
 {
     [Fact]
