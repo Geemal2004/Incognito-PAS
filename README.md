@@ -260,93 +260,94 @@ Current images are structured placeholders under `docs/ui-screenshots/` and can 
 ### Public and Auth
 
 #### Landing
-![Public Landing](docs/ui-screenshots/public/landing.png)
+![Public Landing](Incognito\docs\ui-screenshots\public\image.png)
 
 #### Login
-![Auth Login](docs/ui-screenshots/auth/login.png)
+![Auth Login](incognito/docs/ui-screenshots/auth/login.png)
 
 #### Register
-![Auth Register](docs/ui-screenshots/auth/register.png)
+![Auth Register](incognito/docs/ui-screenshots/auth/register.png)
 
 #### Access Denied
-![Auth Access Denied](docs/ui-screenshots/auth/access-denied.png)
+![Auth Access Denied](incognito/docs/ui-screenshots/auth/access-denied.png)
 
 #### Not Found
-![Auth Not Found](docs/ui-screenshots/auth/not-found.png)
+![Auth Not Found](incognito/docs/ui-screenshots/auth/not-found.png)
 
 ### Student UI
 
 #### Dashboard
-![Student Dashboard](docs/ui-screenshots/student/dashboard.png)
+![Student Dashboard](incognito/docs/ui-screenshots/student/dashboard.png)
 
 #### Profile
-![Student Profile](docs/ui-screenshots/student/profile.png)
+![Student Profile](incognito/docs/ui-screenshots/student/profile.png)
 
 #### Proposals List
-![Student Proposals](docs/ui-screenshots/student/proposals.png)
+![Student Proposals](incognito/docs/ui-screenshots/student/proposals.png)
 
 #### Proposal Details
-![Student Proposal Details](docs/ui-screenshots/student/proposal-details.png)
+![Student Proposal Details](incognito/docs/ui-screenshots/student/proposal-details.png)
 
 #### Proposal Edit
-![Student Proposal Edit](docs/ui-screenshots/student/proposal-edit.png)
+![Student Proposal Edit](incognito/docs/ui-screenshots/student/proposal-edit.png)
 
 #### Proposal Create - Individual
-![Student Proposal Create Individual](docs/ui-screenshots/student/proposal-create-individual.png)
+![Student Proposal Create Individual](Incognito/docs/ui-screenshots/student/proposal-create-individual.png)
 
 #### Proposal Create - Group
-![Student Proposal Create Group](docs/ui-screenshots/student/proposal-create-group.png)
+![Student Proposal Create Group](Incognito/docs/ui-screenshots/student/proposal-create-group.png)
 
 ### Supervisor UI
 
 #### Dashboard
-![Supervisor Dashboard](docs/ui-screenshots/supervisor/dashboard.png)
+![Supervisor Dashboard](incognito/docs/ui-screenshots/supervisor/dashboard.png)
 
 #### Profile
-![Supervisor Profile](docs/ui-screenshots/supervisor/profile.png)
+![Supervisor Profile](incognito/docs/ui-screenshots/supervisor/profile.png)
 
 #### Browse Blind Proposals
-![Supervisor Browse](docs/ui-screenshots/supervisor/browse.png)
+![Supervisor Browse](incognito/docs/ui-screenshots/supervisor/browse.png)
 
 #### Interests Queue
-![Supervisor Interests](docs/ui-screenshots/supervisor/interests.png)
+![Supervisor Interests](incognito/docs/ui-screenshots/supervisor/interests.png)
 
 #### Confirmed Matches
-![Supervisor Confirmed](docs/ui-screenshots/supervisor/confirmed.png)
+![Supervisor Confirmed](incognito/docs/ui-screenshots/supervisor/confirmed.png)
 
 #### Expertise
-![Supervisor Expertise](docs/ui-screenshots/supervisor/expertise.png)
+![Supervisor Expertise](incognito/docs/ui-screenshots/supervisor/expertise.png)
 
 ### Module Leader UI
 
 #### Dashboard
-![Module Leader Dashboard](docs/ui-screenshots/module-leader/dashboard.png)
+![Module Leader Dashboard](incognito/docs/ui-screenshots/module-leader/dashboard.png)
 
 #### Profile
-![Module Leader Profile](docs/ui-screenshots/module-leader/profile.png)
+![Module Leader Profile](incognito/docs/ui-screenshots/module-leader/profile.png)
 
 #### Match Oversight
-![Module Leader Matches](docs/ui-screenshots/module-leader/matches.png)
+![Module Leader Matches](incognito/docs/ui-screenshots/module-leader/matches.png)
 
 #### Research Areas
-![Module Leader Research Areas](docs/ui-screenshots/module-leader/research-areas.png)
+![Module Leader Research Areas](incognito/docs/ui-screenshots/module-leader/research-areas.png)
 
 #### Users
-![Module Leader Users](docs/ui-screenshots/module-leader/users.png)
+![Module Leader Users](incognito/docs/ui-screenshots/module-leader/users.png)
 
 ### SysAdmin UI
 
 #### Dashboard
-![SysAdmin Dashboard](docs/ui-screenshots/admin/dashboard.png)
+![SysAdmin Dashboard](incognito/docs/ui-screenshots/admin/dashboard.png)
 
 #### Profile
-![SysAdmin Profile](docs/ui-screenshots/admin/profile.png)
+![SysAdmin Profile](incognito/docs/ui-screenshots/admin/profile.png)
 
 #### Users
-![SysAdmin Users](docs/ui-screenshots/admin/users.png)
+![SysAdmin Users](incognito/docs/ui-screenshots/admin/users.png)
 
 #### Migrations
-![SysAdmin Migrations](docs/ui-screenshots/admin/migrations.png)
+![SysAdmin Migrations](incognito/docs/ui-screenshots/admin/migrations.png)
 
 #### Audit Logs
-![SysAdmin Audit Logs](docs/ui-screenshots/admin/audit-logs.png)
+![SysAdmin Audit Logs](incognito/docs/ui-screenshots/admin/audit-logs.png)
+
